@@ -21,11 +21,11 @@
 //  console.log(bisonIndex);
 
 // findIndex - 판별 함수
-const array1 = [5, 120, 12, 8, 130, 44];
-const returndFindIndex = array1.findIndex(
-  (value, index) => value > 15 && index > 2
-);
-console.log(returndFindIndex);
+// const array1 = [5, 120, 12, 8, 130, 44];
+// const returndFindIndex = array1.findIndex(
+//   (value, index) => value > 15 && index > 2
+// );
+// console.log(returndFindIndex);
 
 // find - 판별 함수. 만족하는 첫번쨰 값
 // const array1 = [5, 12, 8, 130, 44];
