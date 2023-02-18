@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:image_search/data/data_source/pixabay_api.dart';
-import 'package:image_search/data/repository/photo_api_repository_imple.dart';
+
+import 'package:image_search/di/provider_setup.dart';
+
 import 'package:image_search/presentation/home_screen.dart';
-import 'package:image_search/presentation/home_view_model.dart';
+
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: globalProvider, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,15 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChangeNotifierProvider(
-        create: (_) =>
-            HomeViewModel(PhotoApiRepositoryImpl(PixabayApi(http.Client()))),
-        child: const HomeScreen(),
-      ),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomeScreen());
   }
 }

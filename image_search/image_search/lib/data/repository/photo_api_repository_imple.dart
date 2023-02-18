@@ -11,7 +11,17 @@ class PhotoApiRepositoryImpl implements PhotoApiRepository {
   @override
   Future<Result<List<Photo>>> fetch(String query) async {
     final Result<Iterable> result = await api.fetch(query);
-
-    return result.map((e) => Photo.fromJson(e)).toList();
+    return result.when(success: (hits) {
+      var photomodel = hits.map((e) {
+        // print("hitserror ----- ${e}");
+        return Photo.fromJson(e);
+      });
+      var hitslist = photomodel.toList();
+      var success = Result.success(hitslist);
+      return success;
+    }, error: (message) {
+      // print("implerror ----- ${message}");
+      return Result.error(message);
+    });
   }
 }
