@@ -14,15 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-NotesState _$NotesStateFromJson(Map<String, dynamic> json) {
-  return _NotesState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$NotesState {
   List<Note> get notes => throw _privateConstructorUsedError;
+  NoteOrder<dynamic> get noteOrder => throw _privateConstructorUsedError;
+  bool get isOrderSectionVisible => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NotesStateCopyWith<NotesState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,7 +31,12 @@ abstract class $NotesStateCopyWith<$Res> {
           NotesState value, $Res Function(NotesState) then) =
       _$NotesStateCopyWithImpl<$Res, NotesState>;
   @useResult
-  $Res call({List<Note> notes});
+  $Res call(
+      {List<Note> notes,
+      NoteOrder<dynamic> noteOrder,
+      bool isOrderSectionVisible});
+
+  $NoteOrderCopyWith<dynamic, $Res> get noteOrder;
 }
 
 /// @nodoc
@@ -51,13 +53,31 @@ class _$NotesStateCopyWithImpl<$Res, $Val extends NotesState>
   @override
   $Res call({
     Object? notes = null,
+    Object? noteOrder = null,
+    Object? isOrderSectionVisible = null,
   }) {
     return _then(_value.copyWith(
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
+      noteOrder: null == noteOrder
+          ? _value.noteOrder
+          : noteOrder // ignore: cast_nullable_to_non_nullable
+              as NoteOrder<dynamic>,
+      isOrderSectionVisible: null == isOrderSectionVisible
+          ? _value.isOrderSectionVisible
+          : isOrderSectionVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NoteOrderCopyWith<dynamic, $Res> get noteOrder {
+    return $NoteOrderCopyWith<dynamic, $Res>(_value.noteOrder, (value) {
+      return _then(_value.copyWith(noteOrder: value) as $Val);
+    });
   }
 }
 
@@ -69,7 +89,13 @@ abstract class _$$_NotesStateCopyWith<$Res>
       __$$_NotesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Note> notes});
+  $Res call(
+      {List<Note> notes,
+      NoteOrder<dynamic> noteOrder,
+      bool isOrderSectionVisible});
+
+  @override
+  $NoteOrderCopyWith<dynamic, $Res> get noteOrder;
 }
 
 /// @nodoc
@@ -84,27 +110,37 @@ class __$$_NotesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? notes = null,
+    Object? noteOrder = null,
+    Object? isOrderSectionVisible = null,
   }) {
     return _then(_$_NotesState(
       notes: null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
+      noteOrder: null == noteOrder
+          ? _value.noteOrder
+          : noteOrder // ignore: cast_nullable_to_non_nullable
+              as NoteOrder<dynamic>,
+      isOrderSectionVisible: null == isOrderSectionVisible
+          ? _value.isOrderSectionVisible
+          : isOrderSectionVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_NotesState implements _NotesState {
-  const _$_NotesState({final List<Note> notes = const []}) : _notes = notes;
 
-  factory _$_NotesState.fromJson(Map<String, dynamic> json) =>
-      _$$_NotesStateFromJson(json);
+class _$_NotesState implements _NotesState {
+  const _$_NotesState(
+      {required final List<Note> notes,
+      required this.noteOrder,
+      required this.isOrderSectionVisible})
+      : _notes = notes;
 
   final List<Note> _notes;
   @override
-  @JsonKey()
   List<Note> get notes {
     if (_notes is EqualUnmodifiableListView) return _notes;
     // ignore: implicit_dynamic_type
@@ -112,8 +148,13 @@ class _$_NotesState implements _NotesState {
   }
 
   @override
+  final NoteOrder<dynamic> noteOrder;
+  @override
+  final bool isOrderSectionVisible;
+
+  @override
   String toString() {
-    return 'NotesState(notes: $notes)';
+    return 'NotesState(notes: $notes, noteOrder: $noteOrder, isOrderSectionVisible: $isOrderSectionVisible)';
   }
 
   @override
@@ -121,36 +162,39 @@ class _$_NotesState implements _NotesState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotesState &&
-            const DeepCollectionEquality().equals(other._notes, _notes));
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
+            (identical(other.noteOrder, noteOrder) ||
+                other.noteOrder == noteOrder) &&
+            (identical(other.isOrderSectionVisible, isOrderSectionVisible) ||
+                other.isOrderSectionVisible == isOrderSectionVisible));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notes));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_notes),
+      noteOrder,
+      isOrderSectionVisible);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_NotesStateCopyWith<_$_NotesState> get copyWith =>
       __$$_NotesStateCopyWithImpl<_$_NotesState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_NotesStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class _NotesState implements NotesState {
-  const factory _NotesState({final List<Note> notes}) = _$_NotesState;
-
-  factory _NotesState.fromJson(Map<String, dynamic> json) =
-      _$_NotesState.fromJson;
+  const factory _NotesState(
+      {required final List<Note> notes,
+      required final NoteOrder<dynamic> noteOrder,
+      required final bool isOrderSectionVisible}) = _$_NotesState;
 
   @override
   List<Note> get notes;
+  @override
+  NoteOrder<dynamic> get noteOrder;
+  @override
+  bool get isOrderSectionVisible;
   @override
   @JsonKey(ignore: true)
   _$$_NotesStateCopyWith<_$_NotesState> get copyWith =>

@@ -1,34 +1,51 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:note_app/domain/model/note.dart';
-import 'package:note_app/domain/repository/note_repository.dart';
+import 'package:note_app/domain/usecase/use_cases.dart';
+import 'package:note_app/domain/util/note_order.dart';
+import 'package:note_app/domain/util/order_type.dart';
 import 'package:note_app/presentation/notes/notes_event.dart';
 import 'package:note_app/presentation/notes/notes_state.dart';
 
 class NoteViewModel with ChangeNotifier {
-  final NoteRepository repository;
+  final UseCases useCases;
 
-  NotesState _state = const NotesState();
+  NotesState _state = const NotesState(
+    notes: [],
+    noteOrder: NoteOrder.date(OrderType.descending()),
+    isOrderSectionVisible: false,
+  );
   NotesState get state => _state;
-
-  final List<Note> _notes = [];
-  UnmodifiableListView<Note> get note => UnmodifiableListView(_notes);
 
   Note? _recentlyDeletedNote;
 
-  NoteViewModel(this.repository);
+  NoteViewModel(
+    this.useCases,
+  ) {
+    _loadNotes();
+  }
 
   void onEvent(NotesEvent event) {
     event.when(
       loadNotes: _loadNotes,
       deleteNote: _deleteNote,
       restoreNote: _restoreNote,
+      changeOrder: (NoteOrder<dynamic> noteOrder) {
+        _state = state.copyWith(
+          noteOrder: noteOrder,
+        );
+        _loadNotes();
+      },
+      toggleOrderSection: () {
+        _state =
+            state.copyWith(isOrderSectionVisible: !state.isOrderSectionVisible);
+        notifyListeners();
+      },
     );
   }
 
   Future<void> _loadNotes() async {
-    List<Note> notes = await repository.getNotes();
+    List<Note> notes = await useCases.getNotes(state.noteOrder);
+
     _state = state.copyWith(
       notes: notes,
     );
@@ -36,7 +53,7 @@ class NoteViewModel with ChangeNotifier {
   }
 
   Future<void> _deleteNote(Note note) async {
-    await repository.deleteNote(note);
+    await useCases.deleteNote(note);
 
     _recentlyDeletedNote = note;
 
@@ -45,7 +62,7 @@ class NoteViewModel with ChangeNotifier {
 
   Future<void> _restoreNote() async {
     if (_recentlyDeletedNote != null) {
-      await repository.insertNote(_recentlyDeletedNote!);
+      await useCases.addNote(_recentlyDeletedNote!);
       _recentlyDeletedNote = null;
 
       _loadNotes();
