@@ -1,0 +1,16 @@
+{
+  "date": "string",
+  "dailyPlan": [
+    {
+      "name": "string",
+      "list": [
+        {
+          "set": "int",
+          "weight": "double",
+          "rep": "int",
+          "check": "boolean"
+        }
+      ]
+    }
+  ]
+}
