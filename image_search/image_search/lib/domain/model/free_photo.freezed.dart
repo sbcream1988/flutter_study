@@ -21,7 +21,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Photo {
   int get id => throw _privateConstructorUsedError;
-  String get tag => throw _privateConstructorUsedError;
+  String get tags => throw _privateConstructorUsedError;
   String get previewURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
-  $Res call({int id, String tag, String previewURL});
+  $Res call({int id, String tags, String previewURL});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   @override
   $Res call({
     Object? id = null,
-    Object? tag = null,
+    Object? tags = null,
     Object? previewURL = null,
   }) {
     return _then(_value.copyWith(
@@ -59,9 +59,9 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      tag: null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
               as String,
       previewURL: null == previewURL
           ? _value.previewURL
@@ -77,7 +77,7 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$$_PhotoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String tag, String previewURL});
+  $Res call({int id, String tags, String previewURL});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
   @override
   $Res call({
     Object? id = null,
-    Object? tag = null,
+    Object? tags = null,
     Object? previewURL = null,
   }) {
     return _then(_$_Photo(
@@ -98,9 +98,9 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      tag: null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
               as String,
       previewURL: null == previewURL
           ? _value.previewURL
@@ -114,7 +114,7 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 @JsonSerializable()
 class _$_Photo implements _Photo {
   const _$_Photo(
-      {required this.id, required this.tag, required this.previewURL});
+      {required this.id, required this.tags, required this.previewURL});
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoFromJson(json);
@@ -122,13 +122,13 @@ class _$_Photo implements _Photo {
   @override
   final int id;
   @override
-  final String tag;
+  final String tags;
   @override
   final String previewURL;
 
   @override
   String toString() {
-    return 'Photo(id: $id, tag: $tag, previewURL: $previewURL)';
+    return 'Photo(id: $id, tags: $tags, previewURL: $previewURL)';
   }
 
   @override
@@ -137,14 +137,14 @@ class _$_Photo implements _Photo {
         (other.runtimeType == runtimeType &&
             other is _$_Photo &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.tag, tag) || other.tag == tag) &&
+            (identical(other.tags, tags) || other.tags == tags) &&
             (identical(other.previewURL, previewURL) ||
                 other.previewURL == previewURL));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, tag, previewURL);
+  int get hashCode => Object.hash(runtimeType, id, tags, previewURL);
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +163,7 @@ class _$_Photo implements _Photo {
 abstract class _Photo implements Photo {
   const factory _Photo(
       {required final int id,
-      required final String tag,
+      required final String tags,
       required final String previewURL}) = _$_Photo;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
@@ -171,7 +171,7 @@ abstract class _Photo implements Photo {
   @override
   int get id;
   @override
-  String get tag;
+  String get tags;
   @override
   String get previewURL;
   @override

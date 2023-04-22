@@ -7,7 +7,12 @@ import 'package:image_search/presentation/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: globalProvider, child: const MyApp()));
+  runApp(
+    MultiProvider(
+      providers: globalProvider,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
