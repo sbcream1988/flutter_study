@@ -17,6 +17,7 @@ class _HellChangViewState extends State<HellChangView> {
     var vm = context.watch<HellChangViewModel>();
 
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         title: const Text(
           "헬창 운동일지",
@@ -39,7 +40,7 @@ class _HellChangViewState extends State<HellChangView> {
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(8.0),
-            decoration: const BoxDecoration(color: Colors.blueGrey),
+            decoration: BoxDecoration(color: Colors.blueGrey.shade600),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -56,7 +57,7 @@ class _HellChangViewState extends State<HellChangView> {
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(8.0),
-            decoration: const BoxDecoration(color: Colors.blueGrey),
+            decoration: BoxDecoration(color: Colors.blueGrey.shade600),
             child: Column(
               children: [
                 Row(
@@ -78,18 +79,24 @@ class _HellChangViewState extends State<HellChangView> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                          child: TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "세트추가",
-                                style: TextStyle(color: Colors.black),
-                              )))
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "이전 기록",
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "세트 추가",
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),
@@ -116,32 +123,45 @@ class _HellChangViewState extends State<HellChangView> {
       ),
       floatingActionButton:
           IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
-      bottomNavigationBar: Container(
-        child: Row(
-          children: const [Text("홈")],
-        ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.calendar_month_outlined),
+          ),
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.library_add_check)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.person))
+        ],
       ),
     );
   }
 }
 
-class ItemPlan extends StatelessWidget {
+class ItemPlan extends StatefulWidget {
   const ItemPlan({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ItemPlan> createState() => _ItemPlanState();
+}
+
+class _ItemPlanState extends State<ItemPlan> {
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text("세트"),
+        const Text("세트수"),
         const Text("kg"),
         const Text("rep"),
         const SizedBox(
           width: 15,
         ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+        IconButton(onPressed: () {}, icon: const Icon(Icons.remove_circle))
       ],
     );
   }
