@@ -3,6 +3,7 @@ import 'package:my_to_do_list/domain/model/exercise_model.dart';
 import 'package:my_to_do_list/domain/repository/repo.dart';
 
 class HellChangViewModel with ChangeNotifier {
+  //repository와 주고받음
   late DateTime today;
   late List<Plan>? dailyPlans;
   Repository repo;

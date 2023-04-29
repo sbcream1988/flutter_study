@@ -3,6 +3,11 @@ import 'package:my_to_do_list/domain/model/exercise_model.dart';
 import 'package:my_to_do_list/presentation/hellchang_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+//stf state에 따라 반복적으로 빌드
+//stl 정적 화면 변환 없음
+//내가 이해하는 viewmodel view는 provider를 통해서 상태 관리하면서 연결한다고 생각함
+//viewmodel 변화 changenotifier => view
+
 class HellChangView extends StatefulWidget {
   const HellChangView({super.key});
 
@@ -13,6 +18,7 @@ class HellChangView extends StatefulWidget {
 class _HellChangViewState extends State<HellChangView> {
   @override
   Widget build(BuildContext context) {
+    //view model 연결
     // Provider.of<HellChangViewModel>(context);
     var vm = context.watch<HellChangViewModel>();
 
@@ -152,17 +158,21 @@ class ItemPlan extends StatefulWidget {
 class _ItemPlanState extends State<ItemPlan> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text("세트수"),
-        const Text("kg"),
-        const Text("rep"),
-        const SizedBox(
-          width: 15,
-        ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.remove_circle))
-      ],
+    return Container(
+      margin: const EdgeInsets.all(5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //밑으로 textfield 로 입력 가능하게 바꾸어야함
+        children: [
+          const Text("세트수"),
+          const Text("kg"),
+          const Text("rep"),
+          const SizedBox(
+            width: 15,
+          ),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.remove_circle))
+        ],
+      ),
     );
   }
 }

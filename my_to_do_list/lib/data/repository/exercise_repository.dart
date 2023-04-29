@@ -3,6 +3,7 @@ import 'package:my_to_do_list/domain/model/exercise_model.dart';
 import 'package:my_to_do_list/domain/repository/repo.dart';
 
 class ExerciseRepository implements Repository {
+  //나중에 받아오는 future;?
   ExerciseRepository(this.source);
   DataSample source;
 
