@@ -16,4 +16,6 @@ class MusicViewModel with ChangeNotifier {
   playSongs() {}
   //앞으로
   nextSongs() {}
+  //랜덤셔플
+  radomSongs() {}
 }

@@ -1,6 +1,6 @@
 import 'package:music_player/domain/model/music_model.dart';
 
-//더미
+//임시로 만든 더미
 class DataSource {
   var db = [
     Music(

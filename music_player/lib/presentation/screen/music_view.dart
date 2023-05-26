@@ -44,6 +44,7 @@ class MusicView extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
+            //TODO: 곡 재생 시 슬라이더 움직임 추가
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
